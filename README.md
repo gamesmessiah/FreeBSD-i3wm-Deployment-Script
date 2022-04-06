@@ -1,30 +1,30 @@
 # FreeBSD-i3wm-Deployment-Script
-This script will download and setup i3wm, and dmenu for freebsd.
+<p>This script will download and setup i3wm, and dmenu for freebsd.</p>
 
-It will configure rc.conf and install software.
+<p>It will configure rc.conf and install software.</p>
 
-# Install Software
-xorg
-i3wm, i3status, i3lock, dmenu and i3-gaps
-ant-dracula-theme-2.0
-lightdm, lightdm-gtk-greeter and lightdm-gtk-greeter-settings
-lxappearance
-compton and compton-conf
+<h4># Install Software</h4>
+<p>xorg<br>
+i3wm, i3status, i3lock, dmenu and i3-gaps<br>
+ant-dracula-theme-2.0<br>
+lightdm, lightdm-gtk-greeter and lightdm-gtk-greeter-settings<br>
+lxappearance<br>
+compton and compton-conf<br>
 
-Install Fonts
-font-awesome
+<h4>Install Fonts</h4>
+<p>font-awesome</p>
 
-Install Applications
-firefox and chromium
-pcmanfm and ranger
-curl
-calcurse
-sc-im
-cmus
-nitrogen
-gnybc
-nano and vim
-volumeicon, alsa-utils and pavucontrol
-remmina
-zip
-zathura
+<h4>Install Applications</h4>
+<p>firefox and chromium<br>
+pcmanfm and ranger<br>
+curl<br>
+calcurse<br>
+sc-im<br>
+cmus<br>
+nitrogen<br>
+gnybc<br>
+nano and vim<br>
+volumeicon, alsa-utils and pavucontrol<br>
+remmina<br>
+zip<br>
+zathura<br>
