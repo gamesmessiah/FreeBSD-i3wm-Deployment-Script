@@ -1,5 +1,5 @@
 # FreeBSD-i3wm-Deployment-Script
-<p>This script will download and setup i3wm, and dmenu for freebsd.</p>
+<p>This script will download and setup i3wm and dmenu for freebsd.</p>
 
 <p>It will configure rc.conf and install software.</p>
 
