@@ -28,3 +28,4 @@ volumeicon, alsa-utils and pavucontrol<br>
 remmina<br>
 zip<br>
 zathura<br>
+Eye of Gnome
