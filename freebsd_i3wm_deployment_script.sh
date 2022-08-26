@@ -48,6 +48,7 @@ pkg install font-awesome
 pkg install -y firefox
 pkg install -y chromium
 pkg install -y pcmanfm
+pkg install -y lxmenu-data
 pkg install -y curl
 pkg install -y calcurse
 pkg install -y sc-im
@@ -63,3 +64,4 @@ pkg install -y remmina
 pkg install -y pavucontrol
 pkg install -y zip
 pkg install -y zathura
+pkg install -y eog
