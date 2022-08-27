@@ -45,6 +45,7 @@ pkg install -y compton compton-conf
 pkg install font-awesome
 
 # Install Applications
+pkg install -y arandr
 pkg install -y firefox
 pkg install -y chromium
 pkg install -y pcmanfm
