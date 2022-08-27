@@ -10,6 +10,7 @@ ant-dracula-theme-2.0<br>
 lightdm, lightdm-gtk-greeter and lightdm-gtk-greeter-settings<br>
 lxappearance<br>
 compton and compton-conf<br>
+Arandr
 
 <h4>Install Fonts</h4>
 <p>font-awesome</p>
