@@ -57,7 +57,6 @@ pkg install -y cmus
 pkg install -y py37-ranger-1.9.3
 pkg install -y nitrogen
 pkg install -y gnybc
-pkg install -y nano
 pkg install -y vim
 pkg install -y volumeicon
 pkg install -y alsa-utils
