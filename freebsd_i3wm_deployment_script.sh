@@ -35,8 +35,11 @@ setconfig -f /etc/sysctl.conf kern.coredump=0
 
 # Install Software
 pkg install -y xorg
-pkg install -y i3 i3status i3lock dmenu i3-gaps
-pkg install -y ant-dracula-theme-2.0
+pkg install -y i3 
+pkg install -y i3status
+pkg install -y i3lock
+pkg install -y i3-gaps
+pkg install -y dmenu
 pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 pkg install -y lxappearance
 pkg install -y compton compton-conf
@@ -54,7 +57,6 @@ pkg install -y curl
 pkg install -y calcurse
 pkg install -y sc-im
 pkg install -y cmus
-pkg install -y py37-ranger-1.9.3
 pkg install -y nitrogen
 pkg install -y gnybc
 pkg install -y vim
@@ -65,3 +67,5 @@ pkg install -y pavucontrol
 pkg install -y zip
 pkg install -y zathura
 pkg install -y eog
+# screen brightness brightness
+pkg install -y gammy
