@@ -1,7 +1,8 @@
 #! /bin/sh
 
 # Author: Cameron Taylor
-# http://camerontaylor.uk
+# gemini://camerontaylor.uk
+# gopher://camerontaylor.uk
 # i3wm setup deployment script
 # FreeBSD Desktop
 # Version 0.1
