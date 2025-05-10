@@ -44,6 +44,7 @@ pkg install -y dmenu
 pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 pkg install -y lxappearance
 pkg install -y compton compton-conf
+pkg install -y picom
 
 # Install Fonts
 pkg install font-awesome
@@ -70,3 +71,6 @@ pkg install -y zathura
 pkg install -y eog
 # screen brightness brightness
 pkg install -y gammy
+# install webam
+pkg install webcamd
+pkg install v4l-utils v4l_compat
