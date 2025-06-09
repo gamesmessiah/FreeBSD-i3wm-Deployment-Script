@@ -62,6 +62,7 @@ pkg install -y cmus
 pkg install -y nitrogen
 pkg install -y gnybc
 pkg install -y vim
+pkg install -y mpv
 pkg install -y volumeicon
 pkg install -y alsa-utils
 pkg install -y remmina
