@@ -73,5 +73,6 @@ pkg install -y eog
 # screen brightness brightness
 pkg install -y gammy
 # install webam
-pkg install webcamd
-pkg install v4l-utils v4l_compat
+pkg install -y pwcview
+pkg install -y webcamd
+pkg install -y v4l-utils v4l_compat
