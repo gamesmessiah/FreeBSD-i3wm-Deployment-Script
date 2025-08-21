@@ -45,6 +45,7 @@ pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 pkg install -y lxappearance
 pkg install -y compton compton-conf
 pkg install -y picom
+pkg install -y automount
 
 # Install Fonts
 pkg install font-awesome
