@@ -2,7 +2,7 @@
 
 # Author: Cameron Taylor
 # i3wm setup deployment script for FreeBSD
-# Version 1.1 - Robust Package Installation
+# Version 1.2 - Maximum Reliability Format
 
 # --- DYNAMIC USER DETECTION ---
 if [ "$SUDO_USER" ]; then
@@ -23,22 +23,49 @@ fi
 
 echo "Starting FreeBSD Desktop Provisioning for $TARGET_USER..."
 
-# 1. DEFINE PACKAGES (More robust list format)
-PKGS="drm-kmod xorg i3 i3status i3lock i3-gaps dmenu \
-lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
-lxappearance picom automount font-awesome \
-arandr firefox chromium pcmanfm lxmenu-data \
-curl calcurse sc-im cmus nitrogen vim mpv conky \
-volumeicon alsa-utils remmina pavucontrol \
-zip zathura eog gammy pwcview webcamd \
-v4l-utils v4l_compat ant-dracula-theme"
-
-# 2. INSTALL SOFTWARE
-echo "Updating pkg and installing software..."
+# 1. INSTALL SOFTWARE (One by one for reliability)
 pkg update
-pkg install -y $PKGS
+pkg install -y drm-kmod
+pkg install -y xorg
+pkg install -y i3
+pkg install -y i3status
+pkg install -y i3lock
+pkg install -y i3-gaps
+pkg install -y dmenu
+pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+pkg install -y lxappearance
+pkg install -y ant-dracula-theme
+pkg install -y picom
+pkg install -y automount
+pkg install -y font-awesome
+pkg install -y arandr
+pkg install -y firefox
+pkg install -y chromium
+pkg install -y pcmanfm
+pkg install -y ranger
+pkg install -y lxmenu-data
+pkg install -y curl
+pkg install -y calcurse
+pkg install -y sc-im
+pkg install -y cmus
+pkg install -y nitrogen
+pkg install -y gnybc
+pkg install -y nano
+pkg install -y vim
+pkg install -y mpv
+pkg install -y volumeicon
+pkg install -y alsa-utils
+pkg install -y remmina
+pkg install -y pavucontrol
+pkg install -y zip
+pkg install -y zathura
+pkg install -y eog
+pkg install -y gammy
+pkg install -y pwcview
+pkg install -y webcamd
+pkg install -y v4l-utils v4l_compat
 
-# 3. SYSTEM CONFIGURATION (rc.conf)
+# 2. SYSTEM CONFIGURATION (rc.conf)
 echo "Configuring services..."
 sysrc dbus_enable="YES"
 sysrc ntpd_enable="YES"
@@ -47,15 +74,14 @@ sysrc lightdm_enable="YES"
 sysrc webcamd_enable="YES"
 sysrc kld_list="i915kms fusefs cuse"
 
-# 4. BOOT & KERNEL TUNABLES
+# 3. BOOT & KERNEL TUNABLES
 echo "Updating boot configs..."
-# We use grep to avoid double-entry if script is run twice
 grep -q "kern.vty=vt" /boot/loader.conf || echo 'kern.vty=vt' >> /boot/loader.conf
 grep -q "fusefs_load=\"YES\"" /boot/loader.conf || echo 'fusefs_load="YES"' >> /boot/loader.conf
 sysctl kern.coredump=0
 echo "kern.coredump=0" >> /etc/sysctl.conf
 
-# 5. WALLPAPER & LIGHTDM
+# 4. WALLPAPER & LIGHTDM
 echo "Setting up wallpaper and greeter..."
 mkdir -p /usr/local/share/wallpaper
 fetch -o "$WALLPAPER_DEST" "$WALLPAPER_URL"
@@ -63,20 +89,23 @@ chmod 644 "$WALLPAPER_DEST"
 
 mkdir -p /usr/local/etc/lightdm/
 GREETER_CONF="/usr/local/etc/lightdm/lightdm-gtk-greeter.conf"
+# Using printf to write the config file clearly
 printf "[greeter]\nbackground=%s\n" "$WALLPAPER_DEST" > "$GREETER_CONF"
 
-# 6. USER PERMISSIONS
-echo "Updating group permissions..."
+# 5. USER PERMISSIONS
+echo "Updating group permissions for $TARGET_USER..."
 for grp in video wheel webcamd operator; do
   pw groupmod "$grp" -m "$TARGET_USER"
 done
 
-# 7. GENERATE .XINITRC
+# 6. GENERATE .XINITRC
 echo "Creating .xinitrc..."
 XINITRC="$USER_HOME/.xinitrc"
 cat <<EOF > "$XINITRC"
 #!/bin/sh
+# Start the compositor
 picom -f &
+# Start i3 within a dbus session
 exec ck-launch-session dbus-launch --exit-with-session i3
 EOF
 chown "$TARGET_USER":"$TARGET_USER" "$XINITRC"
