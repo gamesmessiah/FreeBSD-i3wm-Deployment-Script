@@ -25,14 +25,45 @@ echo "Starting FreeBSD Desktop Provisioning for $TARGET_USER..."
 
 # 1. INSTALL SOFTWARE
 pkg update
-pkg install -y drm-kmod xorg i3 i3status i3lock i3-gaps dmenu \
-lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings \
-lxappearance ant-dracula-theme picom automount font-awesome \
-arandr firefox chromium pcmanfm ranger lxmenu-data \
-curl calcurse sc-im cmus nitrogen gnybc nano vim mpv \
-volumeicon alsa-utils remmina pavucontrol zip zathura \
-eog gammy pwcview webcamd v4l-utils v4l_compat \
-terminator rofi flameshot xterm xss-lock networkmgr
+pkg install -y drm-kmod
+pkg install -y xorg
+pkg install -y i3
+pkg install -y i3status
+pkg install -y i3lock
+pkg install -y i3-gaps
+pkg install -y dmenu
+pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+pkg install -y lxappearance
+pkg install -y ant-dracula-theme
+pkg install -y picom
+pkg install -y automount
+pkg install -y font-awesome
+pkg install -y arandr
+pkg install -y firefox
+pkg install -y chromium
+pkg install -y pcmanfm
+pkg install -y ranger
+pkg install -y lxmenu-data
+pkg install -y curl
+pkg install -y calcurse
+pkg install -y sc-im
+pkg install -y cmus
+pkg install -y nitrogen
+pkg install -y gnybc
+pkg install -y nano
+pkg install -y vim
+pkg install -y mpv
+pkg install -y volumeicon
+pkg install -y alsa-utils
+pkg install -y remmina
+pkg install -y pavucontrol
+pkg install -y zip
+pkg install -y zathura
+pkg install -y eog
+pkg install -y gammy
+pkg install -y pwcview
+pkg install -y webcamd
+pkg install -y v4l-utils v4l_compat
 
 # 2. SYSTEM CONFIGURATION
 sysrc dbus_enable="YES" ntpd_enable="YES" moused_enable="YES" \
