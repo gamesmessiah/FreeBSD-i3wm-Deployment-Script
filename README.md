@@ -37,5 +37,5 @@ Log in as your user, switch to root, and grab the repository:
 ```bash
 su -
 pkg update && pkg install -y git
-git clone [https://github.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script.git](https://github.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script.git)
+git clone https://github.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script.git
 cd FreeBSD-i3wm-Deployment-Script
