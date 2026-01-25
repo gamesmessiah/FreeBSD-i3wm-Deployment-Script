@@ -5,7 +5,7 @@ This script automates the transformation of a fresh FreeBSD installation into a 
 ## The Goal
 To go from a "blank slate" FreeBSD terminal to a fully riced productivity machine in one command.
 
-![Desktop Setup](https://github.com/gamesmessiah/bones.vim/FreeBSD-i3wm-Deployment-Script/images/setup.jpg)
+![Desktop Setup]([https://github.com/gamesmessiah/bones.vim/FreeBSD-i3wm-Deployment-Script/images/setup.jpg](https://raw.githubusercontent.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script/refs/heads/main/desktop.png))
 
 ## Features
 * **Graphics:** Automated `drm-kmod` setup for Intel/AMD graphics.
