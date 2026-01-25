@@ -2,7 +2,7 @@
 
 # Author: Cameron Taylor
 # i3wm setup deployment script for FreeBSD
-# Version 2.0 - VirtualBox Compatibility & GTK Fixes
+# Version 1.4 - VirtualBox Compatibility & GTK Fixes
 
 # --- DYNAMIC USER DETECTION ---
 if [ "$SUDO_USER" ]; then
