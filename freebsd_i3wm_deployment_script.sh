@@ -169,6 +169,10 @@ bindsym \$mod+Left focus left
 bindsym \$mod+Down focus down
 bindsym \$mod+Up focus up
 bindsym \$mod+Right focus right
+bindsym \$mod+Shift+Left move left
+bindsym \$mod+Shift+Down move down
+bindsym \$mod+Shift+Up move up
+bindsym \$mod+Shift+Right move right
 bindsym \$mod+Shift+h move left
 bindsym \$mod+Shift+j move down
 bindsym \$mod+Shift+k move up
