@@ -66,6 +66,7 @@ pkg install -y webcamd
 pkg install -y v4l-utils v4l_compat
 pkg install -y networkmgr
 pkg install -y terminator
+pkg install -y emulators/linux_base-c7
 
 # 2. SYSTEM CONFIGURATION
 sysrc dbus_enable="YES"
@@ -73,6 +74,7 @@ sysrc ntpd_enable="YES"
 sysrc moused_enable="YES"
 sysrc lightdm_enable="YES"
 sysrc webcamd_enable="YES"
+sysrc linux_enable="YES"
 # Note: i915kms is for Intel. For VirtualBox testing, you might need vboxguest_enable="YES"
 sysrc kld_list="i915kms fusefs cuse"
 
