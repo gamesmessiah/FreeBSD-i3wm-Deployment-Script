@@ -49,7 +49,7 @@ pkg install -y calcurse
 pkg install -y sc-im
 pkg install -y cmus
 pkg install -y nitrogen
-pkg install -y gnybc
+pkg install -y gnubc
 pkg install -y nano
 pkg install -y vim
 pkg install -y mpv
