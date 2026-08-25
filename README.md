@@ -20,12 +20,12 @@ To go from a "blank slate" FreeBSD terminal to a fully riced productivity machin
 
 | Category | Packages |
 | :--- | :--- |
-| **Window Manager** | `i3-gaps`, `i3status`, `i3lock`, `dmenu`, `rofi`, `conky` |
+| **Window Manager** | `i3-gaps`, `i3status`, `i3lock`, `dmenu`, `conky` |
 | **Login Manager** | `lightdm`, `lightdm-gtk-greeter`, `lightdm-gtk-greeter-settings`, `ant-dracula-theme` |
-| **Terminal / CLI** | `uxterm`, `terminator`, `vim`, `nano`, `ranger`, `curl` |
+| **Terminal / CLI** | `uxterm`, `terminator`, `vim`, `nano`, `curl` |
 | **Productivity** | `firefox`, `chromium`, `pcmanfm`, `calcurse`, `sc-im`, `zathura` |
 | **Multimedia** | `cmus`, `mpv`, `pavucontrol`, `alsa-utils`, `volumeicon`, `eog` |
-| **Utilities** | `nitrogen`, `flameshot`, `arandr`, `gammy`, `webcamd`, `zip`, `gnubc`, `networkmgr`, `lxappearance`, `emulators/linux_base-c7` |
+| **Utilities** | `nitrogen`, `arandr`, `gammy`, `webcamd`, `zip`, `gnubc`, `networkmgr`, `lxappearance`, `emulators/linux_base-c7` |
 
 ---
 
