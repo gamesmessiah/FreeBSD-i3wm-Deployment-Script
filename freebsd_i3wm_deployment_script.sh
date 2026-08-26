@@ -2,7 +2,7 @@
 
 # Author: Cameron Taylor
 # i3wm setup deployment script for FreeBSD
-# Version 2.4.0 - Added Arrow Key Navigation to i3 Config
+# Version 3.0.0 - Fixed Conky Shortcuts Overlay Transparency & Lua Syntax
 
 # --- DYNAMIC USER DETECTION ---
 if [ "$SUDO_USER" ]; then
@@ -44,6 +44,7 @@ pkg install -y dmenu
 pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 pkg install -y lxappearance
 pkg install -y ant-dracula-theme
+pkg install -y papirus-icon-theme hicolor-icon-theme
 pkg install -y picom
 pkg install -y automount
 pkg install -y font-awesome
@@ -51,9 +52,9 @@ pkg install -y arandr
 pkg install -y firefox
 pkg install -y chromium
 pkg install -y pcmanfm
-pkg install -y ranger
 pkg install -y lxmenu-data
 pkg install -y curl
+pkg install -y git
 pkg install -y calcurse
 pkg install -y sc-im
 pkg install -y cmus
@@ -108,7 +109,7 @@ esac
 
 # 3. BOOT & KERNEL TUNABLES
 grep -q "kern.vty=vt" /boot/loader.conf || echo 'kern.vty=vt' >> /boot/loader.conf
-grep -q "fusefs_load=\"YES\"" /boot/loader.conf || echo 'fusefs_load="YES"' >> /boot/loader.conf
+grep -q "fusefs_load="YES"" /boot/loader.conf || echo 'fusefs_load="YES"' >> /boot/loader.conf
 sysctl kern.coredump=0
 echo "kern.coredump=0" >> /etc/sysctl.conf
 
@@ -119,7 +120,10 @@ chmod 644 "$WALLPAPER_DEST"
 
 mkdir -p /usr/local/etc/lightdm/
 GREETER_CONF="/usr/local/etc/lightdm/lightdm-gtk-greeter.conf"
-printf "[greeter]\nbackground=%s\ntheme-name=Ant-Dracula\n" "$WALLPAPER_DEST" > "$GREETER_CONF"
+printf "[greeter]
+background=%s
+theme-name=Ant-Dracula
+" "$WALLPAPER_DEST" > "$GREETER_CONF"
 
 # 5. USER PERMISSIONS
 for grp in video wheel webcamd operator; do
@@ -130,6 +134,15 @@ done
 mkdir -p "$USER_HOME/.config/i3"
 mkdir -p "$USER_HOME/.config/picom"
 mkdir -p "$USER_HOME/.config/gtk-3.0"
+mkdir -p "$USER_HOME/.config/conky"
+mkdir -p "$USER_HOME/.icons"
+chown -R "$TARGET_USER":"$TARGET_USER" "$USER_HOME/.icons"
+
+# --- DRACULA ICON THEME CLONE ---
+ICON_DIR="$USER_HOME/.icons/dracula-icons"
+if [ ! -d "$ICON_DIR" ]; then
+    su -m "$TARGET_USER" -c "git clone https://github.com/m4thewz/dracula-icons "$ICON_DIR""
+fi
 
 # --- WORKING CONKY CONFIG (~/.conkyrc) ---
 cat <<'EOF' > "$USER_HOME/.conkyrc"
@@ -167,6 +180,80 @@ conky.text = [[
     {"full_text": " Battery: ${execi 60 sysctl -n hw.acpi.battery.life}% ", "color":"\#50fa7b"}
 ],
 ]]
+EOF
+
+# --- DESKTOP SHORTCUTS CONKY CONFIG ---
+cat <<'EOF' > "$USER_HOME/.config/conky/conky_shortcuts"
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_width = 0,
+    cpu_avg_samples = 2,
+    default_color = '#f8f8f2',
+    default_outline_color = '#f8f8f2',
+    default_shade_color = '#f8f8f2',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'Monospace:size=10:bold',
+    gap_x = 30,
+    gap_y = 40,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'override',
+    own_window_argb_visual = true,
+    own_window_argb_value = 0,
+    own_window_colour = '#00000000',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+};
+
+conky.text = [[
+${color #6272a4}NAVIGATION (VIM / ARROWS)${color}
+${color #8be9fd}focus left/down/up/right${color} - Super + h/j/k/l ${color #6272a4}or${color} ←/↓/↑/→
+${color #8be9fd}move window${color} - Super + Shift + h/j/k/l ${color #6272a4}or${color} ←/↓/↑/→
+${color #8be9fd}resize mode${color} - Super + r
+
+${color #6272a4}LAUNCHERS & APPS${color}
+${color #8be9fd}terminal (uxterm)${color} - Super + Enter
+${color #8be9fd}terminator${color} - Super + Shift + Enter
+${color #8be9fd}dmenu${color} - Super + d
+${color #8be9fd}browser (chrome)${color} - Super + F1
+${color #8be9fd}file manager (pcmanfm)${color} - Super + F3
+${color #8be9fd}calculator${color} - Super + Shift + a
+
+${color #6272a4}WINDOWS & WORKSPACES${color}
+${color #8be9fd}kill window${color} - Super + Shift + q
+${color #8be9fd}toggle floating${color} - Super + Shift + Space
+${color #8be9fd}fullscreen${color} - Super + f
+${color #8be9fd}split horizontal/vert${color} - Super + i / Super + v
+${color #8be9fd}switch workspace${color} - Super + 1-10
+${color #8be9fd}move to workspace${color} - Super + Shift + 1-5
+
+${color #6272a4}SYSTEM${color}
+${color #8be9fd}reload i3 config${color} - Super + Shift + c
+${color #8be9fd}restart i3${color} - Super + Shift + r
+${color #8be9fd}exit i3${color} - Super + Shift + e
+
+${color #ff79c6}Default mod = <Super>${color}
+]];
 EOF
 
 # --- CONKY i3BAR WRAPPER SCRIPT ---
@@ -213,8 +300,9 @@ EOF
 # --- PICOM CONFIG ---
 cat <<'EOF' > "$USER_HOME/.config/picom/picom.conf"
 # OPACITY
-inactive-opacity = 0.8;
-frame-opacity = 0.7;
+inactive-opacity = 0.85;
+active-opacity = 1.0;
+frame-opacity = 0.8;
 
 # Let inactive opacity set by -i override the '_NET_WM_WINDOW_OPACITY' values of windows.
 inactive-opacity-override = true;
@@ -236,11 +324,10 @@ blur-background-fixed = true
 
 # SHADOWS
 shadow = true;
-shadow-radius = 1; #blur radius
-shadow-opacity = .1
-
-shadow-offset-x = 0;
-shadow-offset-y = 0;
+shadow-radius = 8;
+shadow-opacity = 0.2;
+shadow-offset-x = -4;
+shadow-offset-y = -4;
 
 # FADING
 fading = true;
@@ -260,19 +347,19 @@ mark-ovredir-focused = true;
 
 detect-rounded-corners = false
 detect-client-opacity = true;
-use-ewmh-active-win = true
+use-ewmh-active-win = true;
 detect-transient = true;
 use-damage = true;
 log-level = "warn";
 
 wintypes:
 {
-  tooltip = { fade = true; shadow = true; opacity = 0.5; focus = true; full-shadow = false; };
+  tooltip = { fade = true; shadow = true; opacity = 0.85; focus = true; full-shadow = false; };
   dock = { shadow = false; clip-shadow-above = true; }
   dnd = { shadow = false; }
-  popup_menu = { opacity = 0.7; }
-  dropdown_menu = { opacity = 0.7; }
-  normal = { opacity = 1;}
+  popup_menu = { opacity = 0.9; }
+  dropdown_menu = { opacity = 0.9; }
+  normal = { opacity = 1.0; }
 };
 EOF
 
@@ -293,8 +380,6 @@ bindsym $mod+Shift+Return exec terminator
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec dmenu_run -nb '#282A36' -nf '#F8F8F2' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu'
-
-bindsym $mod+Shift+d exec rofi -show run 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
@@ -350,9 +435,11 @@ exec --no-startup-id setxkbmap gb
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b --config ~/.config/picom/picom.conf 
 exec --no-startup-id networkmgr
 exec --no-startup-id volumeicon
+exec --no-startup-id conky -c ~/.config/conky/conky_shortcuts
 
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [title="calculator"] floating enable
+for_window [class="Conky"] floating enable sticky enable border none
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -401,13 +488,14 @@ EOF
 cat <<'EOF' > "$USER_HOME/.config/gtk-3.0/settings.ini"
 [Settings]
 gtk-theme-name=Ant-Dracula
-gtk-icon-theme-name=Papirus-Dark
+gtk-icon-theme-name=dracula-icons
 gtk-font-name=Sans 10
 EOF
 
 cat <<'EOF' > "$USER_HOME/.gtkrc-2.0"
 include "/usr/local/share/themes/Ant-Dracula/gtk-2.0/gtkrc"
 gtk-theme-name="Ant-Dracula"
+gtk-icon-theme-name="dracula-icons"
 gtk-font-name="Sans 10"
 EOF
 
@@ -421,10 +509,9 @@ exec ck-launch-session dbus-launch --exit-with-session i3
 EOF
 
 # Ownership maintenance
-chown -R "$TARGET_USER":"$TARGET_USER" "$USER_HOME/.config" "$USER_HOME/.conkyrc" "$USER_HOME/.Xresources" "$USER_HOME/.gtkrc-2.0" "$XINITRC"
+chown -R "$TARGET_USER":"$TARGET_USER" "$USER_HOME/.config" "$USER_HOME/.icons" "$USER_HOME/.conkyrc" "$USER_HOME/.Xresources" "$USER_HOME/.gtkrc-2.0" "$XINITRC"
 chmod +x "$XINITRC"
 
 echo "-------------------------------------------------------"
-echo "Setup Complete! Added cursor key bindings to i3 config."
-echo "Press Mod+Shift+R to reload i3."
+echo "Setup Complete! Version 3.0.0 script ready."
 echo "-------------------------------------------------------"
