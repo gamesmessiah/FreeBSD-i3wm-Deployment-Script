@@ -5,7 +5,9 @@ This script automates the transformation of a fresh FreeBSD installation into a 
 ## The Goal
 To go from a "blank slate" FreeBSD terminal to a fully riced productivity machine in one command.
 
-![alt text](https://raw.githubusercontent.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script/refs/heads/main/desktop.png)
+![alt text](https://raw.githubusercontent.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script/refs/heads/main/1.png)
+
+![alt text](https://raw.githubusercontent.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script/refs/heads/main/2.png)
 
 ## Features
 * **Graphics Hardware Support:** Interactive driver installer for Intel/AMD (`drm-kmod`), Nvidia (`nvidia-driver`), or VirtualBox Guest Additions.
@@ -20,12 +22,12 @@ To go from a "blank slate" FreeBSD terminal to a fully riced productivity machin
 
 | Category | Packages |
 | :--- | :--- |
-| **Window Manager** | `i3-gaps`, `i3status`, `i3lock`, `dmenu`, `conky` |
+| **Window Manager** | `i3-gaps`, `i3status`, `i3lock`, `dmenu`, `rofi`, `conky` |
 | **Login Manager** | `lightdm`, `lightdm-gtk-greeter`, `lightdm-gtk-greeter-settings`, `ant-dracula-theme` |
-| **Terminal / CLI** | `uxterm`, `terminator`, `vim`, `nano`, `curl` |
+| **Terminal / CLI** | `uxterm`, `terminator`, `vim`, `nano`, `ranger`, `curl` |
 | **Productivity** | `firefox`, `chromium`, `pcmanfm`, `calcurse`, `sc-im`, `zathura` |
 | **Multimedia** | `cmus`, `mpv`, `pavucontrol`, `alsa-utils`, `volumeicon`, `eog` |
-| **Utilities** | `nitrogen`, `arandr`, `gammy`, `webcamd`, `zip`, `gnubc`, `networkmgr`, `lxappearance`, `emulators/linux_base-c7` |
+| **Utilities** | `nitrogen`, `flameshot`, `arandr`, `gammy`, `webcamd`, `zip`, `gnubc`, `networkmgr`, `lxappearance`, `emulators/linux_base-c7` |
 
 ---
 
