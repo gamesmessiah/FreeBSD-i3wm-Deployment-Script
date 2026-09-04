@@ -50,6 +50,9 @@ Select Display Server:
 1) Standard X.Org
 2) XLibre (Drop-in X.Org Replacement)
 -------------------------------------------------------
+```
+
+---
 
 ## How to Run the Script
 
@@ -59,17 +62,23 @@ Ensure you have a fresh FreeBSD install and a non-root user account assigned to 
 ### 2. Install Git and Clone Repository
 Log in as your regular user, elevate privileges to root, install `git`, and clone the project:
 
+```bash
 su -
 pkg update && pkg install -y git
-git clone https://github.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script.git
+git clone [https://github.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script.git](https://github.com/gamesmessiah/FreeBSD-i3wm-Deployment-Script.git)
 cd FreeBSD-i3wm-Deployment-Script
+```
 
 ### 3. Make Executable and Run
 Grant execute permissions and run the deployment script:
 
+```bash
 chmod +x freebsd_i3wm_deployment_script.sh
 ./freebsd_i3wm_deployment_script.sh
+```
 
 Follow the on-screen menu to select your GPU driver type (Intel/AMD, Nvidia, or VirtualBox). Once the provisioning finishes, reboot your machine to load into LightDM:
 
+```bash
 reboot
+```
