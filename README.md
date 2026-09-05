@@ -37,7 +37,7 @@ To go from a "blank slate" FreeBSD terminal to a fully riced productivity machin
 
 When you execute the script, it will guide you through menu choices for your graphics hardware and preferred display server:
 
-```text
+
 -------------------------------------------------------
 Select your Graphics Hardware:
 1) Intel or AMD (Modern DRM)
@@ -50,7 +50,6 @@ Select Display Server:
 1) Standard X.Org
 2) XLibre (Drop-in X.Org Replacement)
 -------------------------------------------------------
-```
 
 ---
 
